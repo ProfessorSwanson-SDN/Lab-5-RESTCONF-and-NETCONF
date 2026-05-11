@@ -1,0 +1,189 @@
+name: GitHub Classroom Autograding
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Step 2 - Dev Container markers
+        id: step-2-dev-container
+        if: always()
+        continue-on-error: true
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "Step 2: Dev Container & package markers"
+          setup-command: ""
+          command: |
+            set -euo pipefail
+            LOG_FILE="logs/lab5.log"
+            test -f "$LOG_FILE"
+            grep -Fq "[STEP 2] Dev Container Started" "$LOG_FILE"
+            grep -Fq "PKG_OK: requests" "$LOG_FILE"
+            grep -Fq "PKG_OK: ncclient" "$LOG_FILE"
+          timeout: 2
+          max-score: 5
+
+      - name: RESTCONF grading checks
+        id: restconf-checks
+        if: always()
+        continue-on-error: true
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "RESTCONF: >=2 successful endpoints + connect marker"
+          setup-command: ""
+          command: |
+            set -euo pipefail
+            LOG_FILE="logs/lab5.log"
+            test -f "$LOG_FILE"
+            grep -Fq "CONNECT_OK: RESTCONF" "$LOG_FILE"
+            REST_OK_COUNT="$(grep -c "RESTCONF_REQ_OK" "$LOG_FILE" || true)"
+            [ "$REST_OK_COUNT" -ge 2 ]
+          timeout: 2
+          max-score: 12
+
+      - name: NETCONF grading checks
+        id: netconf-checks
+        if: always()
+        continue-on-error: true
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "NETCONF: >=2 successful RPCs + connect marker"
+          setup-command: ""
+          command: |
+            set -euo pipefail
+            LOG_FILE="logs/lab5.log"
+            test -f "$LOG_FILE"
+            grep -Fq "CONNECT_OK: NETCONF" "$LOG_FILE"
+            NETCONF_OK_COUNT="$(grep -c "NETCONF_RPC_OK" "$LOG_FILE" || true)"
+            [ "$NETCONF_OK_COUNT" -ge 2 ]
+          timeout: 2
+          max-score: 12
+
+      - name: Parsing grading checks
+        id: parsing-checks
+        if: always()
+        continue-on-error: true
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "Parsing: JSON + XML extraction markers"
+          setup-command: ""
+          command: |
+            set -euo pipefail
+            LOG_FILE="logs/lab5.log"
+            test -f "$LOG_FILE"
+            grep -Fq "PARSE_JSON_OK" "$LOG_FILE"
+            grep -Fq "PARSE_XML_OK" "$LOG_FILE"
+          timeout: 2
+          max-score: 12
+
+      - name: Report grading checks
+        id: report-checks
+        if: always()
+        continue-on-error: true
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "Report: marker + file exists + includes both protocols"
+          setup-command: ""
+          command: |
+            set -euo pipefail
+            LOG_FILE="logs/lab5.log"
+            REPORT_FILE="data/reports/lab5_report.txt"
+            test -f "$LOG_FILE"
+            grep -Fq "REPORT_SAVED=lab5_report.txt" "$LOG_FILE"
+            test -s "$REPORT_FILE"
+            grep -qi "RESTCONF" "$REPORT_FILE"
+            grep -qi "NETCONF" "$REPORT_FILE"
+          timeout: 2
+          max-score: 12
+
+      - name: Raw artifact grading checks
+        id: raw-artifacts-checks
+        if: always()
+        continue-on-error: true
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "Artifacts: raw JSON/XML files saved in data/"
+          setup-command: ""
+          command: |
+            set -euo pipefail
+            LOG_FILE="logs/lab5.log"
+            test -f "$LOG_FILE"
+            RAW_SAVED_COUNT="$(grep -c "RAW_SAVED" "$LOG_FILE" || true)"
+            [ "$RAW_SAVED_COUNT" -ge 4 ]
+
+            REST_FILES_COUNT="$(find data -type f -name 'restconf_*.json' | wc -l | tr -d ' ')"
+            NETCONF_FILES_COUNT="$(find data -type f -name 'netconf_*.xml' | wc -l | tr -d ' ')"
+            [ "$REST_FILES_COUNT" -ge 2 ]
+            [ "$NETCONF_FILES_COUNT" -ge 2 ]
+
+            find data -type f -name 'restconf_*.json' -size +0c | grep -q .
+            find data -type f -name 'netconf_*.xml' -size +0c | grep -q .
+          timeout: 2
+          max-score: 7
+
+      - name: Error handling and logging checks
+        id: error-logging-checks
+        if: always()
+        continue-on-error: true
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "Error handling and logging consistency"
+          setup-command: ""
+          command: |
+            set -euo pipefail
+            LOG_FILE="logs/lab5.log"
+            test -f "$LOG_FILE"
+            grep -Eq "LAB5[-_]START" "$LOG_FILE"
+            grep -Fq "CONNECT_OK: RESTCONF" "$LOG_FILE"
+            grep -Fq "CONNECT_OK: NETCONF" "$LOG_FILE"
+            if grep -Fq "Traceback (most recent call last)" "$LOG_FILE"; then
+              echo "Unhandled Python traceback found in logs/lab5.log"
+              exit 1
+            fi
+          timeout: 2
+          max-score: 5
+
+      - name: Submission checks
+        id: submission-checks
+        if: always()
+        continue-on-error: true
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: "Submission markers: LAB5_START and LAB5_END"
+          setup-command: ""
+          command: |
+            set -euo pipefail
+            LOG_FILE="logs/lab5.log"
+            test -f "$LOG_FILE"
+            grep -Eq "LAB5[-_]START" "$LOG_FILE"
+            grep -Eq "LAB5[-_]END" "$LOG_FILE"
+          timeout: 2
+          max-score: 10
+
+      - name: Autograding Reporter
+        if: always()
+        uses: classroom-resources/autograding-grading-reporter@v1
+        env:
+          STEP_2_DEV_CONTAINER_RESULTS: "${{ steps.step-2-dev-container.outputs.result }}"
+          RESTCONF_CHECKS_RESULTS: "${{ steps.restconf-checks.outputs.result }}"
+          NETCONF_CHECKS_RESULTS: "${{ steps.netconf-checks.outputs.result }}"
+          PARSING_CHECKS_RESULTS: "${{ steps.parsing-checks.outputs.result }}"
+          REPORT_CHECKS_RESULTS: "${{ steps.report-checks.outputs.result }}"
+          RAW_ARTIFACTS_CHECKS_RESULTS: "${{ steps.raw-artifacts-checks.outputs.result }}"
+          ERROR_LOGGING_CHECKS_RESULTS: "${{ steps.error-logging-checks.outputs.result }}"
+          SUBMISSION_CHECKS_RESULTS: "${{ steps.submission-checks.outputs.result }}"
+        with:
+          runners: step-2-dev-container,restconf-checks,netconf-checks,parsing-checks,report-checks,raw-artifacts-checks,error-logging-checks,submission-checks

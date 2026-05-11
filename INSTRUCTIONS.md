@@ -18,6 +18,15 @@
 - GitHub Classroom workflow (clone, commit, push, PR).
 - Cisco DevNet sandbox credentials and device reachability.
 
+## Table of Contents
+
+1. [Step 1 — Clone the Repository](#step-1--clone-the-repository)
+2. [Step 2 — Open Dev Container](#step-2--open-dev-container)
+3. [Step 3 — RESTCONF — make ≥2 GET requests](#step-3--restconf--make-2-get-requests)
+4. [Step 4 — NETCONF — make ≥2 RPCs](#step-4--netconf--make-2-rpcs)
+5. [Step 5 — Parse artifacts & build f-string report](#step-5--parse-artifacts--build-f-string-report)
+6. [Step 6 — Finalize & Submit](#step-6--finalize--submit)
+
 ## Overview
 You will query a Catalyst 8k device via both RESTCONF (HTTP/JSON) and NETCONF (SSH/XML). For RESTCONF, use Python `requests` and proper YANG/JSON Accept headers; for NETCONF, use `ncclient` and standard RPCs. Make at least two calls per interface (2+ RESTCONF endpoints and 2+ NETCONF RPCs), parse outputs into Python, then craft a concise f-string report that compares findings (e.g., hostname, platform/model, version, and one interface/oper state). Save raw artifacts under `data/`, log autograder markers to `logs/lab5.log`, and submit a PR.
 
@@ -26,7 +35,14 @@ You will query a Catalyst 8k device via both RESTCONF (HTTP/JSON) and NETCONF (S
 
 
 ## Resources
-- [Cisco DevNet Sandboxes (Catalyst 8k/IOS-XE)](https://developer.cisco.com/site/sandbox/)- [RESTCONF — RFC 8040 (concepts)](https://www.rfc-editor.org/rfc/rfc8040)- [NETCONF — RFC 6241 (concepts)](https://www.rfc-editor.org/rfc/rfc6241)- [Requests (Python)](https://requests.readthedocs.io/en/latest/)- [ncclient (Python)](https://ncclient.readthedocs.io/)- [xmltodict](https://github.com/martinblech/xmltodict)
+
+- [Cisco DevNet Sandboxes (Catalyst 8k/IOS-XE)](https://developer.cisco.com/site/sandbox/)
+- [RESTCONF — RFC 8040 (concepts)](https://www.rfc-editor.org/rfc/rfc8040)
+- [NETCONF — RFC 6241 (concepts)](https://www.rfc-editor.org/rfc/rfc6241)
+- [Requests (Python)](https://requests.readthedocs.io/en/latest/)
+- [ncclient (Python)](https://ncclient.readthedocs.io/)
+- [xmltodict](https://github.com/martinblech/xmltodict)
+
 ## Deliverables
 - `src/restconf_queries.py` — performs ≥2 RESTCONF GETs, saves raw JSON, logs markers.
 - `src/netconf_queries.py` — performs ≥2 NETCONF RPCs, saves raw XML, logs markers.

@@ -177,21 +177,13 @@ jobs:
         if: always()
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
-          STEP_2_DEV_CONTAINER_RESULTS: "${{ steps.step-2-dev-container.outputs.result }}"
-          RESTCONF_CHECKS_RESULTS: "${{ steps.restconf-checks.outputs.result }}"
-          NETCONF_CHECKS_RESULTS: "${{ steps.netconf-checks.outputs.result }}"
-          PARSING_CHECKS_RESULTS: "${{ steps.parsing-checks.outputs.result }}"
-          REPORT_CHECKS_RESULTS: "${{ steps.report-checks.outputs.result }}"
-          RAW_ARTIFACTS_CHECKS_RESULTS: "${{ steps.raw-artifacts-checks.outputs.result }}"
-          ERROR_LOGGING_CHECKS_RESULTS: "${{ steps.error-logging-checks.outputs.result }}"
-          SUBMISSION_CHECKS_RESULTS: "${{ steps.submission-checks.outputs.result }}"
+          STEP-2-DEV-CONTAINER_RESULTS: "${{ steps.step-2-dev-container.outputs.result }}"
+          RESTCONF-CHECKS_RESULTS: "${{ steps.restconf-checks.outputs.result }}"
+          NETCONF-CHECKS_RESULTS: "${{ steps.netconf-checks.outputs.result }}"
+          PARSING-CHECKS_RESULTS: "${{ steps.parsing-checks.outputs.result }}"
+          REPORT-CHECKS_RESULTS: "${{ steps.report-checks.outputs.result }}"
+          RAW-ARTIFACTS-CHECKS_RESULTS: "${{ steps.raw-artifacts-checks.outputs.result }}"
+          ERROR-LOGGING-CHECKS_RESULTS: "${{ steps.error-logging-checks.outputs.result }}"
+          SUBMISSION-CHECKS_RESULTS: "${{ steps.submission-checks.outputs.result }}"
         with:
-          runners: |
-            step-2-dev-container
-            restconf-checks
-            netconf-checks
-            parsing-checks
-            report-checks
-            raw-artifacts-checks
-            error-logging-checks
-            submission-checks
+          runners: step-2-dev-container,restconf-checks,netconf-checks,parsing-checks,report-checks,raw-artifacts-checks,error-logging-checks,submission-checks

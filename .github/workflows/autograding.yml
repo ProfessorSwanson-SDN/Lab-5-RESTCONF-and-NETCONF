@@ -186,4 +186,12 @@ jobs:
           ERROR_LOGGING_CHECKS_RESULTS: "${{ steps.error-logging-checks.outputs.result }}"
           SUBMISSION_CHECKS_RESULTS: "${{ steps.submission-checks.outputs.result }}"
         with:
-          runners: step-2-dev-container,restconf-checks,netconf-checks,parsing-checks,report-checks,raw-artifacts-checks,error-logging-checks,submission-checks
+          runners: |
+            step-2-dev-container
+            restconf-checks
+            netconf-checks
+            parsing-checks
+            report-checks
+            raw-artifacts-checks
+            error-logging-checks
+            submission-checks

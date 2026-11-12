@@ -1,0 +1,346 @@
+{
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "GigabitEthernet0/0",
+        "description": "DO NOT TOUCH",
+        "type": "iana-if-type:ethernetCsmacd",
+        "enabled": true,
+        "ietf-ip:ipv4": {
+          "address": [
+            {
+              "ip": "10.10.20.66",
+              "netmask": "255.255.255.0"
+            }
+          ]
+        },
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "GigabitEthernet1/0/1",
+        "description": "uplink to 10",
+        "type": "iana-if-type:ethernetCsmacd",
+        "enabled": true,
+        "ietf-diffserv-target:diffserv-target-entry": [
+          {
+            "direction": "ietf-diffserv-target:outbound",
+            "policy-name": "QOS-POLICY"
+          }
+        ],
+        "ietf-ip:ipv4": {},
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "GigabitEthernet1/0/2",
+        "description": "uplink to 20",
+        "type": "iana-if-type:ethernetCsmacd",
+        "enabled": true,
+        "ietf-ip:ipv4": {},
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "GigabitEthernet1/0/3",
+        "description": "uplink to 30",
+        "type": "iana-if-type:ethernetCsmacd",
+        "enabled": true,
+        "ietf-ip:ipv4": {},
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "GigabitEthernet1/0/4",
+        "description": "uplink to 40",
+        "type": "iana-if-type:ethernetCsmacd",
+        "enabled": true,
+        "ietf-ip:ipv4": {},
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "GigabitEthernet1/0/5",
+        "description": "Kevin's interface",
+        "type": "iana-if-type:ethernetCsmacd",
+        "enabled": true,
+        "ietf-ip:ipv4": {},
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "GigabitEthernet1/0/6",
+        "type": "iana-if-type:ethernetCsmacd",
+        "enabled": false,
+        "ietf-ip:ipv4": {},
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "GigabitEthernet1/0/7",
+        "type": "iana-if-type:ethernetCsmacd",
+        "enabled": false,
+        "ietf-ip:ipv4": {},
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "GigabitEthernet1/0/8",
+        "type": "iana-if-type:ethernetCsmacd",
+        "enabled": true,
+        "ietf-ip:ipv4": {},
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Loopback0",
+        "type": "iana-if-type:softwareLoopback",
+        "enabled": true,
+        "ietf-ip:ipv4": {
+          "address": [
+            {
+              "ip": "10.255.0.1",
+              "netmask": "255.255.255.255"
+            }
+          ]
+        },
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Loopback10",
+        "description": "NETCONF-LOOPBACK-LAB",
+        "type": "iana-if-type:softwareLoopback",
+        "enabled": true,
+        "ietf-ip:ipv4": {},
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Loopback95",
+        "description": "ansible-updated",
+        "type": "iana-if-type:softwareLoopback",
+        "enabled": true,
+        "ietf-ip:ipv4": {
+          "address": [
+            {
+              "ip": "10.99.99.95",
+              "netmask": "255.255.255.0"
+            }
+          ]
+        },
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Loopback99",
+        "description": "aG9zdC1zeW5jLXJlbGF5LTAxMjM0",
+        "type": "iana-if-type:softwareLoopback",
+        "enabled": true,
+        "ietf-ip:ipv4": {},
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Loopback100",
+        "description": "Configurado por Jorge Soto 22000612",
+        "type": "iana-if-type:softwareLoopback",
+        "enabled": true,
+        "ietf-ip:ipv4": {
+          "address": [
+            {
+              "ip": "10.10.10.1",
+              "netmask": "255.255.255.255"
+            }
+          ]
+        },
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Loopback203",
+        "description": "PRUEBA_G1_Loopback203",
+        "type": "iana-if-type:softwareLoopback",
+        "enabled": true,
+        "ietf-ip:ipv4": {
+          "address": [
+            {
+              "ip": "10.203.1.1",
+              "netmask": "255.255.255.0"
+            }
+          ]
+        },
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Loopback213",
+        "description": "LOOPBACK_PLUS_ESCALABILIDAD",
+        "type": "iana-if-type:softwareLoopback",
+        "enabled": true,
+        "ietf-ip:ipv4": {
+          "address": [
+            {
+              "ip": "10.213.1.1",
+              "netmask": "255.255.255.0"
+            }
+          ]
+        },
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Loopback221",
+        "description": "EXAMEN_GRUPO3_NETMIKO",
+        "type": "iana-if-type:softwareLoopback",
+        "enabled": true,
+        "ietf-ip:ipv4": {
+          "address": [
+            {
+              "ip": "10.221.1.1",
+              "netmask": "255.255.255.0"
+            }
+          ]
+        },
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Loopback222",
+        "description": "EXAMEN_GRUPO3_NETMIKO",
+        "type": "iana-if-type:softwareLoopback",
+        "enabled": false,
+        "ietf-ip:ipv4": {
+          "address": [
+            {
+              "ip": "10.222.1.1",
+              "netmask": "255.255.255.0"
+            }
+          ]
+        },
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Loopback223",
+        "description": "EXAMEN_GRUPO3_PLUS",
+        "type": "iana-if-type:softwareLoopback",
+        "enabled": true,
+        "ietf-ip:ipv4": {
+          "address": [
+            {
+              "ip": "10.223.1.1",
+              "netmask": "255.255.255.0"
+            }
+          ]
+        },
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Loopback10041",
+        "description": "Pod10_Task041",
+        "type": "iana-if-type:softwareLoopback",
+        "enabled": true,
+        "ietf-ip:ipv4": {
+          "address": [
+            {
+              "ip": "10.0.10.41",
+              "netmask": "255.255.255.255"
+            }
+          ]
+        },
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Tunnel7",
+        "description": "Backup path 7Kq2XmR9pLvT4NbW circuit",
+        "type": "iana-if-type:tunnel",
+        "enabled": true,
+        "ietf-ip:ipv4": {
+          "address": [
+            {
+              "ip": "10.254.7.1",
+              "netmask": "255.255.255.252"
+            }
+          ]
+        },
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Tunnel41",
+        "description": "aG9zdC1zeW5jLXJlbGF5LTAxMjM0",
+        "type": "iana-if-type:tunnel",
+        "enabled": true,
+        "ietf-ip:ipv4": {
+          "address": [
+            {
+              "ip": "10.254.41.1",
+              "netmask": "255.255.255.252"
+            }
+          ]
+        },
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Vlan1",
+        "type": "iana-if-type:l3ipvlan",
+        "enabled": true,
+        "ietf-ip:ipv4": {},
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Vlan10",
+        "description": "Switchport description",
+        "type": "iana-if-type:l3ipvlan",
+        "enabled": true,
+        "ietf-ip:ipv4": {
+          "address": [
+            {
+              "ip": "10.18.0.1",
+              "netmask": "255.255.255.0"
+            }
+          ]
+        },
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Vlan20",
+        "type": "iana-if-type:l3ipvlan",
+        "enabled": true,
+        "ietf-ip:ipv4": {
+          "address": [
+            {
+              "ip": "192.168.20.254",
+              "netmask": "255.255.255.0"
+            }
+          ]
+        },
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Vlan30",
+        "type": "iana-if-type:l3ipvlan",
+        "enabled": true,
+        "ietf-ip:ipv4": {
+          "address": [
+            {
+              "ip": "192.168.30.254",
+              "netmask": "255.255.255.0"
+            }
+          ]
+        },
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Vlan40",
+        "type": "iana-if-type:l3ipvlan",
+        "enabled": true,
+        "ietf-ip:ipv4": {
+          "address": [
+            {
+              "ip": "192.168.40.254",
+              "netmask": "255.255.255.0"
+            }
+          ]
+        },
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Vlan400",
+        "type": "iana-if-type:l3ipvlan",
+        "enabled": true,
+        "ietf-ip:ipv4": {},
+        "ietf-ip:ipv6": {}
+      },
+      {
+        "name": "Vlan1104",
+        "type": "iana-if-type:l3ipvlan",
+        "enabled": true,
+        "ietf-ip:ipv4": {},
+        "ietf-ip:ipv6": {}
+      }
+    ]
+  }
+}

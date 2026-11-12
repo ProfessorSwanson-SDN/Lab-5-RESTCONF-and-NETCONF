@@ -1,0 +1,8 @@
+Lab 5 RESTCONF and NETCONF comparison
+
+Hostname: RESTCONF = Switch | NETCONF = Switch | Match
+Model/platform: RESTCONF = Unavailable in capture | NETCONF = Unavailable in capture | Comparison unavailable
+Version: RESTCONF = Unavailable in capture | NETCONF = Unavailable in capture | Comparison unavailable
+Interfaces returned: RESTCONF = 29 | NETCONF = 29 | Match
+
+Interface counts reflect names in each reply. Configuration and operational views may return different sets.
